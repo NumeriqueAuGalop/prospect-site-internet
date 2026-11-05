@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maquette de démonstration pour le site vitrine one-page de CURTIS BARBER, barbier à Lyon.">
+  <title>CURTIS BARBER - Barbier à Lyon</title>
+  <style>
+    :root {
+      --bg: #0f0f10;
+      --bg-soft: #17181b;
+      --card: rgba(255,255,255,0.05);
+      --text: #f4f1ea;
+      --muted: #c9c2b8;
+      --line: rgba(255,255,255,0.12);
+      --accent: #c49a5a;
+      --accent-2: #e7c998;
+      --shadow: 0 18px 40px rgba(0,0,0,0.25);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(196,154,90,0.12), transparent 30%),
+        radial-gradient(circle at right center, rgba(231,201,152,0.08), transparent 25%),
+        linear-gradient(180deg, #0c0d0f 0%, #111214 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .demo-banner {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      text-align: center;
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 37px;
+      z-index: 999;
+      background: rgba(15,15,16,0.72);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+
+    .brand strong {
+      font-size: 1.1rem;
+      letter-spacing: 0.14em;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .menu {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: var(--muted);
+      font-size: 0.96rem;
+      transition: color 0.2s ease;
+    }
+
+    .menu a:hover,
+    .menu a:focus { color: var(--accent-2); }
+
+    .hero {
+      padding: 6rem 0 4rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.35rem 0.7rem;
+      border: 1px solid rgba(196,154,90,0.35);
+      border-radius: 999px;
+      color: var(--accent-2);
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+      background: rgba(196,154,90,0.08);
+    }
+
+    h1, h2, h3 { margin: 0 0 1rem; line-height: 1.1; }
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      letter-spacing: 0.04em;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 58ch;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.2rem;
+      border-radius: 999px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #1b1208;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .hero-card,
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 1.5rem;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.12), rgba(0,0,0,0.6)),
+        radial-gradient(circle at top right, rgba(196,154,90,0.25), transparent 35%),
+        linear-gradient(135deg, #24262b, #111214 65%);
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px,
+        transparent 16px
+      );
+      pointer-events: none;
+    }
+
+    .hero-card .badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.25);
+      color: var(--muted);
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: #efe8dc;
+      font-size: 1rem;
+      max-width: 24ch;
+    }
+
+    section {
+      padding: 2rem 0 4rem;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin: 0;
+      max-width: 60ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      padding: 1.4rem;
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 1.1rem;
+    }
+
+    .hours-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 0.5rem;
+    }
+
+    .hours-table th,
+    .hours-table td {
+      text-align: left;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .hours-table th { color: var(--text); font-weight: 600; }
+
+    .contact-list {
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 0.5rem;
+    }
+
+    .contact-item {
+      padding: 0.9rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .contact-item strong {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    .map-note {
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .grid-3,
+      .hours-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { padding-top: 4.5rem; }
+      header { top: 37px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .menu {
+        width: 100%;
+        gap: 0.8rem 1rem;
+      }
+
+      .section-head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-card { min-height: 300px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">Maquette de démonstration</div>
+
+  <header>
+    <div class="container nav">
+      <a href="#accueil" class="brand" aria-label="Aller à l'accueil">
+        <strong>CURTIS BARBER</strong>
+        <span>Barbier · Lyon</span>
+      </a>
+      <nav class="menu" aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#services">Services</a>
+        <a href="#horaires">Horaires</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">Barbier à Lyon</span>
+          <h1>Style soigné, atmosphère moderne.</h1>
+          <p class="lead">Bienvenue chez <strong>CURTIS BARBER</strong>, une adresse pensée pour celles et ceux qui recherchent une coupe nette, une barbe entretenue et une expérience simple, élégante et efficace.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contact">Nous contacter</a>
+            <a class="btn btn-secondary" href="#services">Découvrir les services</a>
+          </div>
+        </div>
+        <div class="hero-card" aria-hidden="true">
+          <div class="badge">One-page responsive</div>
+          <p>Une maquette sobre et premium, idéale pour présenter le salon, les prestations, les horaires et les informations pratiques.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Services</span>
+            <h2>Prestations du salon</h2>
+          </div>
+          <p>Une présentation claire des services proposés, sans afficher de prix tant que la carte n'a pas été définie.</p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Coupe homme</h3>
+            <p>Coupe soignée, finitions précises et style adapté à vos envies comme à votre quotidien.</p>
+          </article>
+          <article class="card">
+            <h3>Taille de barbe</h3>
+            <p>Entretien, contours et harmonisation pour une barbe nette et structurée.</p>
+          </article>
+          <article class="card">
+            <h3>Conseil &amp; style</h3>
+            <p>Accompagnement personnalisé pour choisir une coupe ou une ligne de barbe en accord avec votre visage.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="horaires">
+      <div class="container hours-grid">
+        <div>
+          <span class="eyebrow">Horaires</span>
+          <h2>Informations d'ouverture</h2>
+          <p class="lead">Les horaires n'ont pas encore été communiqués. Cette section peut être mise à jour dès validation.</p>
+        </div>
+        <div class="card">
+          <table class="hours-table" aria-label="Horaires d'ouverture">
+            <tbody>
+              <tr><th>Lundi</th><td>À compléter</td></tr>
+              <tr><th>Mardi</th><td>À compléter</td></tr>
+              <tr><th>Mercredi</th><td>À compléter</td></tr>
+              <tr><th>Jeudi</th><td>À compléter</td></tr>
+              <tr><th>Vendredi</th><td>À compléter</td></tr>
+              <tr><th>Samedi</th><td>À compléter</td></tr>
+              <tr><th>Dimanche</th><td>À compléter</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Contact</span>
+            <h2>Informations pratiques</h2>
+          </div>
+          <p>Retrouvez ici les coordonnées essentielles ainsi qu'un plan d'accès textuel simple à lire sur mobile comme sur ordinateur.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3>Coordonnées</h3>
+            <div class="contact-list">
+              <div class="contact-item">
+                <strong>Nom du commerce</strong>
+                CURTIS BARBER
+              </div>
+              <div class="contact-item">
+                <strong>Adresse</strong>
+                Adresse à compléter
+              </div>
+              <div class="contact-item">
+                <strong>Téléphone</strong>
+                Téléphone à compléter
+              </div>
+              <div class="contact-item">
+                <strong>Ville</strong>
+                Lyon
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Plan d'accès textuel</h3>
+            <p class="map-note">Le salon est situé à Lyon. L'adresse exacte pourra être ajoutée ici pour préciser l'itinéraire, les rues voisines, les arrêts de transports en commun les plus proches et les possibilités de stationnement.</p>
+            <ul class="list">
+              <li>Repère principal : quartier à préciser</li>
+              <li>Accès transport : à compléter</li>
+              <li>Stationnement : à compléter</li>
+              <li>Entrée du salon : informations à compléter</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>© CURTIS BARBER — Maquette de site vitrine.</div>
+      <div>Textes et informations à valider avant mise en ligne.</div>
+    </div>
+  </footer>
+</body>
+</html>
