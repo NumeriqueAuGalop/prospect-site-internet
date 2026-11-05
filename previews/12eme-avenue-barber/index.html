@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maquette de démonstration du site vitrine de 12ÈME AVENUE BARBER, barbier à Lyon.">
+  <title>12ÈME AVENUE BARBER - Barbier à Lyon</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --bg-soft: #171a20;
+      --card: rgba(255,255,255,0.04);
+      --text: #f4f1ea;
+      --muted: #c4b8a3;
+      --line: rgba(255,255,255,0.1);
+      --accent: #c89b5a;
+      --accent-2: #9b6b34;
+      --shadow: 0 20px 50px rgba(0,0,0,0.35);
+      --radius: 20px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(200,155,90,0.18), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(155,107,52,0.18), transparent 30%),
+        linear-gradient(180deg, #111318 0%, #0b0d11 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .demo-banner {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      text-align: center;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+      background: rgba(255,255,255,0.06);
+      color: #f5e7cf;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      padding: 0.45rem 1rem;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header.hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(8,10,14,0.88) 0%, rgba(8,10,14,0.72) 45%, rgba(8,10,14,0.35) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1600' height='1000' viewBox='0 0 1600 1000'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop stop-color='%2324272f'/%3E%3Cstop offset='1' stop-color='%230f1115'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1600' height='1000' fill='url(%23g)'/%3E%3Cg opacity='0.18' stroke='%23c89b5a' stroke-width='2' fill='none'%3E%3Cpath d='M120 760c120-220 280-320 460-300s290 160 470 120 250-170 430-300'/%3E%3Cpath d='M0 180c180 80 340 140 520 120s260-120 420-120 250 60 660 260'/%3E%3C/g%3E%3Cg opacity='0.08' fill='%23ffffff'%3E%3Ccircle cx='1260' cy='210' r='110'/%3E%3Ccircle cx='1380' cy='620' r='180'/%3E%3C/g%3E%3C/svg%3E") center/cover no-repeat;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -15% auto;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,155,90,0.18) 0%, rgba(200,155,90,0.03) 55%, transparent 70%);
+      filter: blur(8px);
+      z-index: -1;
+    }
+
+    nav {
+      position: absolute;
+      top: 1.2rem;
+      left: 0;
+      right: 0;
+      z-index: 10;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(15,17,21,0.55);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+    }
+
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .brand span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      color: #eee3d2;
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus { color: var(--accent); }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 2rem;
+      align-items: center;
+      padding: 7rem 0 4rem;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 0.45rem 0.8rem;
+      border: 1px solid rgba(200,155,90,0.35);
+      border-radius: 999px;
+      color: #f0d5ad;
+      background: rgba(200,155,90,0.08);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      margin: 0 0 1rem;
+      font-size: clamp(2.4rem, 5vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: 0.03em;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: #e3d8c9;
+      max-width: 60ch;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.95rem 1.25rem;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #111;
+      box-shadow: 0 10px 25px rgba(200,155,90,0.22);
+    }
+
+    .btn-secondary {
+      border-color: rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.04);
+      color: var(--text);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(200,155,90,0.08), transparent 45%);
+      pointer-events: none;
+    }
+
+    .card-title {
+      margin: 0 0 1rem;
+      font-size: 1.15rem;
+      color: #f5dfba;
+    }
+
+    .info-list {
+      display: grid;
+      gap: 0.9rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .info-list li {
+      padding: 0.9rem 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+    }
+
+    .info-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 0.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    main section {
+      padding: 5rem 0;
+    }
+
+    .section-head {
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+    }
+
+    .section-head p {
+      margin: 0;
+      color: #d2c6b4;
+      max-width: 60ch;
+    }
+
+    .services-grid,
+    .contact-grid,
+    .hours-grid {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 0.6rem;
+      color: #f2dfc1;
+      font-size: 1.15rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: #ddd2c3;
+    }
+
+    .hours-grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    .hours-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.95rem 1rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hours-list strong { color: #fff3de; }
+    .hours-list span { color: var(--muted); }
+
+    .note {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-item {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .contact-label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.2rem;
+    }
+
+    .map-text {
+      color: #e2d7c8;
+      margin: 0;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: #b8ab96;
+    }
+
+    .footer-box {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .accent-line {
+      width: 70px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      margin: 0 0 1rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .hours-grid,
+      .contact-grid,
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-wrap {
+        border-radius: 24px;
+        align-items: flex-start;
+      }
+
+      .brand { white-space: normal; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(var(--max), calc(100% - 1.2rem)); }
+      .hero-grid { padding-top: 8.5rem; }
+      .nav-links { gap: 0.7rem 1rem; }
+      .hours-list li { flex-direction: column; align-items: flex-start; }
+      .footer-box { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">Maquette de démonstration</div>
+
+  <header class="hero" id="accueil">
+    <nav>
+      <div class="container">
+        <div class="nav-wrap">
+          <a href="#accueil" class="brand">12ÈME <span>AVENUE</span> BARBER</a>
+          <div class="nav-links">
+            <a href="#accueil">Accueil</a>
+            <a href="#services">Services</a>
+            <a href="#horaires">Horaires</a>
+            <a href="#contact">Contact</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Barbier • Lyon</div>
+        <h1>Style précis,<br>ambiance soignée.</h1>
+        <p class="lead">Bienvenue chez <strong>12ÈME AVENUE BARBER</strong>, une adresse pensée pour ceux qui recherchent une coupe nette, une barbe travaillée et une expérience moderne dans un cadre élégant à Lyon.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Nous contacter</a>
+          <a class="btn btn-secondary" href="#services">Découvrir les services</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Informations essentielles">
+        <div class="accent-line"></div>
+        <h2 class="card-title">Informations essentielles</h2>
+        <ul class="info-list">
+          <li>
+            <span class="info-label">Établissement</span>
+            12ÈME AVENUE BARBER
+          </li>
+          <li>
+            <span class="info-label">Catégorie</span>
+            Barbier
+          </li>
+          <li>
+            <span class="info-label">Adresse</span>
+            À compléter
+          </li>
+          <li>
+            <span class="info-label">Téléphone</span>
+            À compléter
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="accent-line"></div>
+            <h2>Services</h2>
+          </div>
+          <p>Une carte claire, centrée sur l'essentiel : coupe, barbe et entretien, dans un esprit soigné et contemporain.</p>
+        </div>
+
+        <div class="services-grid">
+          <article class="card">
+            <h3>Coupe homme</h3>
+            <p>Réalisation de coupes adaptées au style souhaité, avec attention portée aux finitions et à la précision.</p>
+          </article>
+          <article class="card">
+            <h3>Taille de barbe</h3>
+            <p>Structuration, contours et entretien de la barbe pour un rendu net, harmonieux et maîtrisé.</p>
+          </article>
+          <article class="card">
+            <h3>Rasage & soin</h3>
+            <p>Moment de confort et de soin pour une peau apaisée et une présentation impeccable.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="horaires">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="accent-line"></div>
+            <h2>Horaires</h2>
+          </div>
+          <p>Les horaires ci-dessous sont à renseigner. Cette maquette prévoit un affichage simple et lisible sur mobile comme sur ordinateur.</p>
+        </div>
+
+        <div class="hours-grid">
+          <div class="card">
+            <ul class="hours-list">
+              <li><strong>Lundi</strong><span>À compléter</span></li>
+              <li><strong>Mardi</strong><span>À compléter</span></li>
+              <li><strong>Mercredi</strong><span>À compléter</span></li>
+              <li><strong>Jeudi</strong><span>À compléter</span></li>
+              <li><strong>Vendredi</strong><span>À compléter</span></li>
+              <li><strong>Samedi</strong><span>À compléter</span></li>
+              <li><strong>Dimanche</strong><span>À compléter</span></li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Informations pratiques</h3>
+            <p>Les jours et heures d'ouverture seront à confirmer par le commerce. Cette section peut également accueillir des précisions utiles, comme les créneaux sur rendez-vous ou les périodes de forte affluence.</p>
+            <p class="note">Astuce : il est conseillé d'indiquer ici les modalités de prise de rendez-vous dès que le numéro de téléphone sera disponible.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <div class="accent-line"></div>
+            <h2>Contact</h2>
+          </div>
+          <p>Une section essentielle pour aider les clients à trouver rapidement le salon et à préparer leur venue.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card">
+            <div class="contact-item">
+              <span class="contact-label">Nom</span>
+              <strong>12ÈME AVENUE BARBER</strong>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Adresse</span>
+              <span>À compléter</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Téléphone</span>
+              <span>À compléter</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-label">Ville</span>
+              <span>Lyon</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Plan d'accès textuel</h3>
+            <p class="map-text">Le salon se situe à Lyon. L'adresse exacte étant à compléter, cette zone est prévue pour décrire simplement l'accès : quartier, rue, arrêt de transport en commun le plus proche, stationnement à proximité et repères visuels utiles pour trouver l'entrée.</p>
+            <p class="map-text" style="margin-top: 1rem;">Exemple d'usage futur : « À quelques minutes de tel arrêt, à proximité de tel axe, entrée sur rue ». Ces informations pourront être ajoutées dès que l'adresse sera confirmée.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-box">
+      <div>© Maquette de démonstration - 12ÈME AVENUE BARBER</div>
+      <div>Site vitrine one-page moderne et responsive</div>
+    </div>
+  </footer>
+</body>
+</html>
