@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MW Paysage - Paysagiste à Lyon</title>
+  <meta name="description" content="MW Paysage, paysagiste à Lyon, Rhône, France. Maquette de site vitrine one-page moderne et responsive.">
+  <style>
+    :root {
+      --bg: #f6f8f4;
+      --surface: rgba(255,255,255,0.78);
+      --surface-strong: #ffffff;
+      --text: #1f2a1f;
+      --muted: #5f6f61;
+      --primary: #3f7d3a;
+      --primary-dark: #2f5f2c;
+      --accent: #a8d5a2;
+      --border: rgba(31,42,31,0.08);
+      --shadow: 0 18px 45px rgba(31,42,31,0.08);
+      --radius: 20px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(168,213,162,0.25), transparent 30%),
+        radial-gradient(circle at right, rgba(63,125,58,0.08), transparent 20%),
+        linear-gradient(180deg, #f8fbf7 0%, var(--bg) 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .demo-banner {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      text-align: center;
+      background: rgba(31,42,31,0.9);
+      color: #fff;
+      font-size: 0.9rem;
+      padding: 0.45rem 1rem;
+      backdrop-filter: blur(8px);
+      letter-spacing: 0.02em;
+    }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 37px;
+      z-index: 999;
+      padding: 1rem 0;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.1rem;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(255,255,255,0.65);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      border-radius: 999px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+
+    .brand strong {
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus { color: var(--primary-dark); }
+
+    .btn,
+    button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.95rem 1.35rem;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover,
+    button:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary) 0%, #4d9a46 100%);
+      color: #fff;
+      box-shadow: 0 12px 30px rgba(63,125,58,0.26);
+    }
+
+    .btn-secondary {
+      background: var(--surface-strong);
+      color: var(--primary-dark);
+      border: 1px solid var(--border);
+    }
+
+    main section {
+      padding: 4.5rem 0;
+    }
+
+    .hero {
+      padding-top: 2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.65);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-content {
+      padding: clamp(1.6rem, 2vw, 2.6rem);
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(168,213,162,0.28);
+      color: var(--primary-dark);
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      width: fit-content;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.4rem);
+      line-height: 1.05;
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p.lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.9rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.6rem;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.6rem;
+    }
+
+    .point {
+      padding: 1rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--border);
+    }
+
+    .point strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .point span {
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .visual {
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05)),
+        linear-gradient(135deg, #7fbf6f 0%, #4e8f47 45%, #2f5f2c 100%);
+    }
+
+    .visual::before,
+    .visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.14);
+      filter: blur(3px);
+    }
+
+    .visual::before {
+      width: 260px;
+      height: 260px;
+      top: -40px;
+      right: -40px;
+    }
+
+    .visual::after {
+      width: 180px;
+      height: 180px;
+      bottom: 20px;
+      left: -30px;
+    }
+
+    .garden-shape {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .garden-card {
+      width: 100%;
+      max-width: 360px;
+      background: rgba(255,255,255,0.92);
+      border-radius: 24px;
+      padding: 1.4rem;
+      box-shadow: 0 20px 35px rgba(0,0,0,0.12);
+    }
+
+    .garden-card h3 {
+      margin-bottom: 0.4rem;
+      font-size: 1.15rem;
+    }
+
+    .garden-card p {
+      color: var(--muted);
+      margin-bottom: 0;
+      font-size: 0.96rem;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-head h2 {
+      font-size: clamp(1.7rem, 3vw, 2.6rem);
+      margin-bottom: 0.35rem;
+      letter-spacing: -0.02em;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin-bottom: 0;
+      max-width: 60ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .service-card,
+    .info-card {
+      padding: 1.4rem;
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(168,213,162,0.32);
+      color: var(--primary-dark);
+      font-size: 1.35rem;
+      margin-bottom: 1rem;
+    }
+
+    .service-card h3,
+    .info-card h3 {
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .service-card p,
+    .info-card p,
+    .info-card li,
+    .contact-details p {
+      color: var(--muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 1.2rem;
+    }
+
+    .hours-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.8rem 0;
+      border-bottom: 1px dashed rgba(31,42,31,0.12);
+    }
+
+    .hours-list li:last-child { border-bottom: none; }
+
+    .hours-list span:last-child {
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .contact-card,
+    .map-card,
+    .reviews-card {
+      padding: 1.5rem;
+    }
+
+    .contact-details a {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+
+    .map-placeholder {
+      min-height: 100%;
+      border-radius: 18px;
+      border: 1px dashed rgba(63,125,58,0.35);
+      background:
+        linear-gradient(180deg, rgba(168,213,162,0.22), rgba(255,255,255,0.75));
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .map-placeholder strong {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-size: 1.05rem;
+    }
+
+    .reviews-card {
+      text-align: center;
+      background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(168,213,162,0.18));
+    }
+
+    .reviews-card p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    footer {
+      padding: 2rem 0 3rem;
+      color: var(--muted);
+    }
+
+    .footer-card {
+      padding: 1.2rem 1.4rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.4rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(168,213,162,0.25);
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .grid-3,
+      .two-col,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-points {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      header { top: 33px; }
+      .nav {
+        border-radius: 24px;
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .nav-links {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      main section {
+        padding: 3.5rem 0;
+      }
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .footer-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">Maquette de démonstration</div>
+
+  <header>
+    <div class="container">
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#accueil" class="brand" aria-label="MW Paysage - Retour à l'accueil">
+          <strong>MW Paysage</strong>
+          <span>Paysagiste à Lyon</span>
+        </a>
+        <div class="nav-links">
+          <a href="#accueil">Accueil</a>
+          <a href="#services">Services</a>
+          <a href="#horaires">Horaires</a>
+          <a href="#contact">Contact</a>
+          <a class="btn btn-primary" href="#contact">Prendre rendez-vous</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-card hero-content">
+            <div class="eyebrow">🌿 Aménagement & entretien extérieur</div>
+            <h1>Donnez vie à vos extérieurs avec <br>MW Paysage</h1>
+            <p class="lead">Installé à Lyon, MW Paysage vous accompagne pour imaginer, aménager et entretenir des espaces verts soignés, harmonieux et adaptés à vos envies.</p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Prendre rendez-vous</a>
+              <a href="#services" class="btn btn-secondary">Découvrir les services</a>
+            </div>
+            <div class="hero-points" aria-label="Points forts">
+              <div class="point">
+                <strong>Aménagement extérieur</strong>
+                <span>Création d'espaces verts et valorisation de vos jardins.</span>
+              </div>
+              <div class="point">
+                <strong>Entretien régulier</strong>
+                <span>Interventions adaptées aux besoins de vos extérieurs.</span>
+              </div>
+              <div class="point">
+                <strong>Intervention à Lyon</strong>
+                <span>Basé à Lyon, Rhône, France.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-card visual" aria-hidden="true">
+            <div class="garden-shape">
+              <div class="garden-card">
+                <h3>Un extérieur pensé pour durer</h3>
+                <p>Une présence en ligne claire, moderne et rassurante pour présenter votre savoir-faire de paysagiste et faciliter la prise de contact.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Services</h2>
+            <p>Une présentation simple de vos prestations principales, pour permettre à vos futurs clients de comprendre rapidement votre activité.</p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card service-card">
+            <div class="icon">🌱</div>
+            <h3>Création de jardins</h3>
+            <p>Conception d'espaces extérieurs agréables et cohérents, en accord avec votre terrain, vos usages et l'ambiance recherchée.</p>
+          </article>
+          <article class="card service-card">
+            <div class="icon">✂️</div>
+            <h3>Entretien paysager</h3>
+            <p>Suivi et entretien des extérieurs pour préserver un rendu soigné au fil des saisons et valoriser durablement vos espaces verts.</p>
+          </article>
+          <article class="card service-card">
+            <div class="icon">🪴</div>
+            <h3>Aménagement extérieur</h3>
+            <p>Mise en valeur de vos abords, plantations et organisation des espaces pour un résultat pratique, esthétique et accueillant.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="horaires">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Horaires</h2>
+            <p>Horaires à compléter selon vos disponibilités. Cette section peut être ajustée avant la mise en ligne du site.</p>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="card info-card">
+            <div class="icon">🕒</div>
+            <h3>Disponibilités</h3>
+            <ul class="hours-list" aria-label="Horaires d'ouverture">
+              <li><span>Lundi</span><span>À compléter</span></li>
+              <li><span>Mardi</span><span>À compléter</span></li>
+              <li><span>Mercredi</span><span>À compléter</span></li>
+              <li><span>Jeudi</span><span>À compléter</span></li>
+              <li><span>Vendredi</span><span>À compléter</span></li>
+              <li><span>Samedi</span><span>À compléter</span></li>
+              <li><span>Dimanche</span><span>À compléter</span></li>
+            </ul>
+          </div>
+
+          <div class="card info-card">
+            <div class="icon">📍</div>
+            <h3>Zone d'intervention</h3>
+            <p>MW Paysage est situé à <strong>Lyon, Rhône, France</strong>. Cette maquette peut accueillir un texte plus précis sur votre secteur d'intervention, vos habitudes de déplacement ou les communes desservies.</p>
+            <p>Ajoutez ici quelques informations utiles comme le type de clientèle accompagnée, le mode de prise de rendez-vous ou les périodes d'intervention les plus fréquentes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="avis-title">
+      <div class="container">
+        <div class="card reviews-card">
+          <div class="icon" style="margin: 0 auto 1rem auto;">⭐</div>
+          <h2 id="avis-title">Avis clients</h2>
+          <p>Vos meilleurs avis Google s'afficheront ici</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Contact</h2>
+            <p>Une section claire pour faciliter les demandes de renseignements et les prises de rendez-vous.</p>
+          </div>
+        </div>
+
+        <div class="contact-wrap">
+          <div class="card contact-card">
+            <div class="icon">📞</div>
+            <h3>Coordonnées</h3>
+            <div class="contact-details">
+              <p><strong>MW Paysage</strong><br>Paysagiste<br>Lyon, Rhône, France</p>
+              <p><strong>Téléphone :</strong><br><a href="tel:+33688041825">06 88 04 18 25</a></p>
+              <p>Pour toute demande, vous pouvez appeler directement afin d'échanger sur votre projet d'aménagement ou d'entretien extérieur.</p>
+              <p><a class="btn btn-primary" href="tel:+33688041825">Appeler maintenant</a></p>
+            </div>
+          </div>
+
+          <div class="card map-card">
+            <div class="map-placeholder">
+              <strong>Plan d'accès textuel</strong>
+              <p>Entreprise située à <strong>Lyon</strong>, dans le département du <strong>Rhône</strong>, en <strong>France</strong>.</p>
+              <p>Cette zone peut accueillir ultérieurement une carte intégrée ou des indications plus détaillées selon l'adresse exacte et les modalités d'accueil sur place.</p>
+              <p><strong>Repère conseillé :</strong> intervention et prise de contact sur le secteur lyonnais.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="card footer-card">
+        <div>
+          <strong>MW Paysage</strong><br>
+          <span>Paysagiste à Lyon, Rhône, France</span>
+        </div>
+        <div class="badge">Maquette one-page responsive</div>
+      </div>
+    </div>
+  </footer>
+<img src="https://numogalo.app.n8n.cloud/webhook/maquette-vue?k=mw-paysage" alt="" width="1" height="1" style="position:absolute;left:-9999px;top:0"></body>
+</html>
