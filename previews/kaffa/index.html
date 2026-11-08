@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaffa - Restaurant à Lyon</title>
+  <meta name="description" content="Kaffa, restaurant à Lyon, Place Voltaire. Découvrez la carte, les horaires et les informations de contact.">
+  <style>
+    :root {
+      --bg: #f7f3ee;
+      --surface: rgba(255,255,255,0.82);
+      --surface-strong: #ffffff;
+      --text: #2e241d;
+      --muted: #6f6258;
+      --accent: #8a5a3b;
+      --accent-dark: #6f452b;
+      --line: rgba(46, 36, 29, 0.1);
+      --shadow: 0 20px 45px rgba(46, 36, 29, 0.12);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(138, 90, 59, 0.12), transparent 30%),
+        radial-gradient(circle at right, rgba(193, 162, 132, 0.18), transparent 25%),
+        var(--bg);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .demo-banner {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      letter-spacing: 0.02em;
+      color: var(--muted);
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(46, 36, 29, 0.08);
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 37px;
+      z-index: 40;
+      padding: 14px 0;
+      background: linear-gradient(to bottom, rgba(247,243,238,0.92), rgba(247,243,238,0.7));
+      backdrop-filter: blur(10px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid rgba(46, 36, 29, 0.08);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(46, 36, 29, 0.06);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+      font-size: 1rem;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      padding: 10px 14px;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: 0.25s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      background: rgba(138, 90, 59, 0.1);
+      color: var(--accent-dark);
+    }
+
+    .hero {
+      padding: 42px 0 28px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-card,
+    .visual-card,
+    .section-card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.45);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card {
+      padding: 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(138, 90, 59, 0.1);
+      color: var(--accent-dark);
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      margin: 0 0 14px;
+      line-height: 1.1;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 4.6rem);
+      letter-spacing: -0.04em;
+    }
+
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 60ch;
+      margin-bottom: 26px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 0 18px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      box-shadow: 0 12px 30px rgba(111, 69, 43, 0.24);
+    }
+
+    .btn-secondary {
+      color: var(--accent-dark);
+      background: rgba(138, 90, 59, 0.08);
+      border: 1px solid rgba(138, 90, 59, 0.16);
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .meta-item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.72);
+      border: 1px solid var(--line);
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .visual-card {
+      min-height: 100%;
+      padding: 18px;
+    }
+
+    .visual-panel {
+      height: 100%;
+      min-height: 420px;
+      border-radius: calc(var(--radius) - 6px);
+      background:
+        linear-gradient(180deg, rgba(46,36,29,0.15), rgba(46,36,29,0.45)),
+        linear-gradient(135deg, #b08968 0%, #7f5539 45%, #5e3023 100%);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+    }
+
+    .visual-panel::before,
+    .visual-panel::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      filter: blur(2px);
+    }
+
+    .visual-panel::before {
+      width: 220px;
+      height: 220px;
+      top: -40px;
+      right: -40px;
+    }
+
+    .visual-panel::after {
+      width: 160px;
+      height: 160px;
+      bottom: 40px;
+      left: -30px;
+    }
+
+    .visual-copy {
+      position: relative;
+      z-index: 1;
+      color: #fff;
+      max-width: 28ch;
+    }
+
+    .section {
+      padding: 18px 0;
+    }
+
+    .section-card {
+      padding: 34px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .menu-item,
+    .info-block,
+    .review-box,
+    .contact-box {
+      padding: 22px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.74);
+      border: 1px solid var(--line);
+    }
+
+    .menu-item h3,
+    .info-block h3,
+    .contact-box h3 {
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+
+    .muted { color: var(--muted); }
+
+    .hours-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(46, 36, 29, 0.14);
+    }
+
+    .hours-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .contact-list {
+      list-style: none;
+      padding: 0;
+      margin: 14px 0 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-list li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .review-box {
+      text-align: center;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 28px 0 44px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-card {
+      padding: 18px 22px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 920px) {
+      header { top: 37px; }
+      .hero-grid,
+      .contact-grid,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+      .hero-meta {
+        grid-template-columns: 1fr;
+      }
+      .section-head {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .nav {
+        border-radius: 24px;
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .brand { justify-content: center; }
+      .nav-links { justify-content: center; }
+    }
+
+    @media (max-width: 640px) {
+      .hero-card,
+      .section-card { padding: 24px; }
+      .visual-panel { min-height: 300px; }
+      .nav-links a { padding: 9px 12px; font-size: 0.92rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">Maquette de démonstration</div>
+
+  <header>
+    <div class="container">
+      <nav class="nav" aria-label="Navigation principale">
+        <a href="#accueil" class="brand" aria-label="Kaffa - retour à l'accueil">
+          <span class="brand-mark">K</span>
+          <span>Kaffa</span>
+        </a>
+        <div class="nav-links">
+          <a href="#accueil">Accueil</a>
+          <a href="#carte">Carte</a>
+          <a href="#horaires">Horaires</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">Restaurant à Lyon</div>
+          <h1>Kaffa</h1>
+          <p class="lead">
+            Une adresse conviviale à découvrir Place Voltaire, au cœur de Lyon. Cette maquette présente une future vitrine web claire, moderne et pensée pour mettre en valeur l'identité du restaurant, ses informations pratiques et sa carte.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Réserver</a>
+            <a class="btn btn-secondary" href="#carte">Voir la carte</a>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-item">
+              <strong>Adresse</strong>
+              Place Voltaire, Lyon
+            </div>
+            <div class="meta-item">
+              <strong>Ambiance</strong>
+              Chaleureuse, moderne et accueillante
+            </div>
+            <div class="meta-item">
+              <strong>Contact</strong>
+              Téléphone à compléter
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-card" aria-hidden="true">
+          <div class="visual-panel">
+            <div class="visual-copy">
+              <h2 style="margin-bottom:10px;">Une vitrine élégante pour votre restaurant</h2>
+              <p style="margin:0; color: rgba(255,255,255,0.88);">
+                Design responsive, lecture fluide et accès rapide aux informations essentielles.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="carte" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <h2>Carte</h2>
+              <p>Présentez ici les grandes familles de plats, spécialités de la maison ou suggestions du moment, sans surcharger la lecture.</p>
+            </div>
+          </div>
+          <div class="grid-2">
+            <article class="menu-item">
+              <h3>Entrées</h3>
+              <p class="muted">Mettez en avant une sélection d'entrées, de petites assiettes ou de propositions à partager.</p>
+            </article>
+            <article class="menu-item">
+              <h3>Plats</h3>
+              <p class="muted">Présentez les plats signatures, les inspirations de saison et les incontournables du restaurant.</p>
+            </article>
+            <article class="menu-item">
+              <h3>Desserts</h3>
+              <p class="muted">Ajoutez ici les desserts maison, douceurs du moment et autres créations gourmandes.</p>
+            </article>
+            <article class="menu-item">
+              <h3>Boissons</h3>
+              <p class="muted">Indiquez les boissons chaudes, fraîches ou les accords proposés selon l'univers de Kaffa.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="horaires" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <h2>Horaires</h2>
+              <p>Les horaires précis pourront être mis à jour dès validation par le restaurant.</p>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="info-block">
+              <h3>Ouverture du restaurant</h3>
+              <ul class="hours-list" aria-label="Horaires d'ouverture">
+                <li><span>Lundi</span><span>À confirmer</span></li>
+                <li><span>Mardi</span><span>À confirmer</span></li>
+                <li><span>Mercredi</span><span>À confirmer</span></li>
+                <li><span>Jeudi</span><span>À confirmer</span></li>
+                <li><span>Vendredi</span><span>À confirmer</span></li>
+                <li><span>Samedi</span><span>À confirmer</span></li>
+                <li><span>Dimanche</span><span>À confirmer</span></li>
+              </ul>
+            </div>
+            <div class="info-block">
+              <h3>Informations pratiques</h3>
+              <p class="muted">
+                Cette section peut également préciser les services disponibles : accueil sur place, réservation conseillée, ou informations complémentaires selon l'organisation de l'établissement.
+              </p>
+              <p class="muted" style="margin-bottom:0;">
+                Les horaires ci-contre sont volontairement laissés à confirmer pour éviter toute information erronée.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Avis clients">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <h2>Avis clients</h2>
+              <p>Un espace dédié pour rassurer les visiteurs et valoriser la réputation locale du restaurant.</p>
+            </div>
+          </div>
+          <div class="review-box">Vos meilleurs avis Google s'afficheront ici</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-card">
+          <div class="section-head">
+            <div>
+              <h2>Contact</h2>
+              <p>Retrouvez les coordonnées essentielles et un plan d'accès textuel pour faciliter la venue de vos clients.</p>
+            </div>
+          </div>
+          <div class="contact-grid">
+            <div class="contact-box">
+              <h3>Coordonnées</h3>
+              <ul class="contact-list">
+                <li><strong>Nom :</strong>&nbsp;<span>Kaffa</span></li>
+                <li><strong>Adresse :</strong>&nbsp;<span>Place Voltaire, Lyon</span></li>
+                <li><strong>Téléphone :</strong>&nbsp;<span>À compléter</span></li>
+                <li><strong>Réservation :</strong>&nbsp;<span>Contactez directement le restaurant pour connaître les modalités.</span></li>
+              </ul>
+            </div>
+            <div class="contact-box">
+              <h3>Plan d'accès textuel</h3>
+              <p class="muted" style="margin-top:0;">
+                Le restaurant se situe Place Voltaire à Lyon. Cette localisation permet d'indiquer simplement aux visiteurs la zone d'arrivée. Un plan interactif ou un lien vers un service de cartographie pourra être ajouté dans la version finale du site.
+              </p>
+              <p class="muted" style="margin-bottom:0;">
+                Depuis le centre de Lyon, dirigez-vous vers le quartier de la Place Voltaire puis recherchez l'enseigne Kaffa sur la place.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-card">
+        <span>© Kaffa — Maquette de site vitrine one-page</span>
+        <span>Adresse : Place Voltaire, Lyon</span>
+      </div>
+    </div>
+  </footer>
+<img src="https://numogalo.app.n8n.cloud/webhook/maquette-vue?k=kaffa" alt="" width="1" height="1" style="position:absolute;left:-9999px;top:0"></body>
+</html>
