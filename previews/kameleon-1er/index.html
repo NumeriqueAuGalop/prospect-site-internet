@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Maquette de démonstration du site vitrine one-page du restaurant Kameleon 1er à Lyon.">
+  <title>Kameleon 1er</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: rgba(255,255,255,0.08);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #f59e0b;
+      --accent-2: #fb7185;
+      --shadow: 0 20px 50px rgba(0,0,0,0.25);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(245,158,11,0.22), transparent 30%),
+        radial-gradient(circle at left center, rgba(251,113,133,0.16), transparent 28%),
+        linear-gradient(180deg, #0b1220 0%, #111827 100%);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .demo-banner {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      text-align: center;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      color: #e5e7eb;
+      background: rgba(15, 23, 42, 0.82);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 37px;
+      z-index: 999;
+      backdrop-filter: blur(14px);
+      background: rgba(11,18,32,0.56);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-badge {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #111827;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--text);
+      background: rgba(255,255,255,0.08);
+      outline: none;
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #fde68a;
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 1.03;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p {
+      margin: 0 0 24px;
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #f97316);
+      color: #111827;
+      box-shadow: 0 12px 30px rgba(245,158,11,0.28);
+    }
+
+    .btn-secondary {
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.06));
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(140deg, rgba(245,158,11,0.16), transparent 45%),
+        radial-gradient(circle at bottom right, rgba(251,113,133,0.18), transparent 35%);
+      pointer-events: none;
+    }
+
+    .plate {
+      position: absolute;
+      right: 22px;
+      top: 22px;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff7ed 0%, #fed7aa 35%, #fdba74 60%, #fb923c 100%);
+      box-shadow: inset 0 0 0 10px rgba(255,255,255,0.45), 0 12px 34px rgba(0,0,0,0.28);
+      opacity: 0.95;
+    }
+
+    .hero-card-content {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+    }
+
+    .hero-card h2 {
+      margin: 0 0 10px;
+      font-size: 1.55rem;
+    }
+
+    .hero-card p {
+      margin: 0;
+      color: #e5e7eb;
+    }
+
+    section {
+      padding: 34px 0;
+    }
+
+    .section-title {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      letter-spacing: -0.02em;
+    }
+
+    .section-lead {
+      margin: 0 0 24px;
+      color: var(--muted);
+      max-width: 70ch;
+    }
+
+    .grid-3,
+    .grid-2 {
+      display: grid;
+      gap: 20px;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.18rem;
+    }
+
+    .card p,
+    .card li {
+      color: var(--muted);
+    }
+
+    .menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 14px;
+    }
+
+    .menu-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: baseline;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed rgba(255,255,255,0.14);
+    }
+
+    .menu-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .menu-list strong { color: var(--text); display: block; }
+    .menu-note {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: #fde68a;
+    }
+
+    .hours-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hours-list li:last-child { border-bottom: none; }
+
+    .contact-box {
+      display: grid;
+      gap: 14px;
+    }
+
+    .contact-item {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-label {
+      display: block;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #fde68a;
+      margin-bottom: 6px;
+    }
+
+    .reviews {
+      text-align: center;
+      padding: 28px;
+      font-size: 1.02rem;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 26px 0 40px;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-3,
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .hero-card {
+        min-height: 320px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      header { top: 37px; }
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        width: 100%;
+      }
+      .nav-links a {
+        padding: 8px 12px;
+      }
+      .container {
+        width: min(var(--max), calc(100% - 20px));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="demo-banner">Maquette de démonstration</div>
+
+  <header>
+    <div class="container nav">
+      <a href="#accueil" class="brand" aria-label="Retour à l'accueil">
+        <span class="brand-badge">K</span>
+        <span>Kameleon 1er</span>
+      </a>
+      <nav class="nav-links" aria-label="Navigation principale">
+        <a href="#accueil">Accueil</a>
+        <a href="#carte">Carte</a>
+        <a href="#horaires">Horaires</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="accueil" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Restaurant • Lyon</div>
+          <h1>Kameleon 1er</h1>
+          <p>
+            Une adresse pensée pour mettre en valeur votre restaurant avec une présence en ligne moderne, élégante et facile à consulter sur mobile comme sur ordinateur.
+            Cette maquette one-page présente l'essentiel : ambiance, carte, horaires et informations de contact.
+          </p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#contact">Réserver</a>
+            <a class="btn btn-secondary" href="#carte">Voir la carte</a>
+          </div>
+        </div>
+
+        <div class="hero-card" aria-hidden="true">
+          <div class="plate"></div>
+          <div class="hero-card-content">
+            <h2>Une vitrine claire et gourmande</h2>
+            <p>
+              Présentez vos spécialités, vos horaires et l'accès à votre établissement dans un design contemporain, chaleureux et responsive.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="carte">
+      <div class="container">
+        <h2 class="section-title">Carte</h2>
+        <p class="section-lead">
+          Mettez en avant vos incontournables, vos suggestions du moment ou l'esprit de votre cuisine. Les intitulés ci-dessous sont des exemples de rubriques à personnaliser.
+        </p>
+
+        <div class="grid-3">
+          <article class="card">
+            <h3>Entrées</h3>
+            <ul class="menu-list">
+              <li>
+                <div>
+                  <strong>Suggestions d'entrées</strong>
+                  <span>Description à compléter selon votre carte</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Produits de saison</strong>
+                  <span>Mise en avant de vos inspirations du moment</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Plats</h3>
+            <ul class="menu-list">
+              <li>
+                <div>
+                  <strong>Spécialités maison</strong>
+                  <span>Présentez ici vos plats signatures</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Option végétarienne</strong>
+                  <span>Indiquez vos propositions adaptées</span>
+                </div>
+              </li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Desserts & boissons</h3>
+            <ul class="menu-list">
+              <li>
+                <div>
+                  <strong>Desserts</strong>
+                  <span>Exemples de douceurs à renseigner</span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Boissons</strong>
+                  <span>Softs, vins, cocktails ou boissons chaudes</span>
+                </div>
+              </li>
+            </ul>
+            <p class="menu-note">Les détails complets de la carte pourront être ajoutés sans inventer de prix.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="horaires">
+      <div class="container">
+        <h2 class="section-title">Horaires</h2>
+        <p class="section-lead">
+          Les horaires sont à compléter. Cette section permet à vos clients de trouver rapidement les jours et heures d'ouverture.
+        </p>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Ouverture hebdomadaire</h3>
+            <ul class="hours-list">
+              <li><span>Lundi</span><strong>À compléter</strong></li>
+              <li><span>Mardi</span><strong>À compléter</strong></li>
+              <li><span>Mercredi</span><strong>À compléter</strong></li>
+              <li><span>Jeudi</span><strong>À compléter</strong></li>
+              <li><span>Vendredi</span><strong>À compléter</strong></li>
+              <li><span>Samedi</span><strong>À compléter</strong></li>
+              <li><span>Dimanche</span><strong>À compléter</strong></li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Informations utiles</h3>
+            <p>
+              Vous pouvez ajouter ici des précisions pratiques comme le service du midi et du soir, les fermetures exceptionnelles, la réservation conseillée ou les options de vente à emporter.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Avis clients">
+      <div class="container">
+        <div class="card reviews">Vos meilleurs avis Google s'afficheront ici</div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <h2 class="section-title">Contact</h2>
+        <p class="section-lead">
+          Facilitez la prise de contact et l'accès à votre établissement avec des informations claires et visibles.
+        </p>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Coordonnées</h3>
+            <div class="contact-box">
+              <div class="contact-item">
+                <span class="contact-label">Nom</span>
+                <strong>Kameleon 1er</strong>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">Adresse</span>
+                <strong>Adresse à compléter</strong>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">Téléphone</span>
+                <strong>Téléphone à compléter</strong>
+              </div>
+              <div class="contact-item">
+                <span class="contact-label">Réservation</span>
+                <strong>Par téléphone ou sur demande via le futur formulaire de contact</strong>
+              </div>
+            </div>
+          </article>
+
+          <article class="card">
+            <h3>Plan d'accès</h3>
+            <p>
+              Le restaurant est situé à Lyon. L'adresse exacte sera ajoutée ici pour permettre à vos clients de vous localiser facilement.
+            </p>
+            <p>
+              <strong>Accès :</strong> indiquer ici les rues voisines, l'arrêt de transport en commun le plus proche, les possibilités de stationnement et toute indication utile pour trouver l'établissement rapidement.
+            </p>
+            <p>
+              Exemple de présentation : « À quelques minutes à pied d'un arrêt de métro ou de bus, avec stationnement à proximité selon disponibilité ».
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © Maquette de démonstration — Kameleon 1er
+    </div>
+  </footer>
+<img src="https://numogalo.app.n8n.cloud/webhook/maquette-vue?k=kameleon-1er" alt="" width="1" height="1" style="position:absolute;left:-9999px;top:0"></body>
+</html>
