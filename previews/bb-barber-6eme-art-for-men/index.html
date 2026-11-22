@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bb Barber 6Eme Art For Men</title>
+  <meta name="description" content="Bb Barber 6Eme Art For Men, barbier à Lyon 6e. Coupe, taille de barbe et entretien masculin dans un cadre soigné.">
+  <meta name="theme-color" content="#111111">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1115;
+      --surface:#171a20;
+      --text:#f5f1e8;
+      --muted:#cfc7b8;
+      --accent:#c79a52;
+      --line:rgba(255,255,255,.10);
+      --glass:rgba(255,255,255,.08);
+      --shadow:0 20px 60px rgba(0,0,0,.28);
+      --radius:24px;
+      --radius-sm:18px;
+      --max:1200px;
+      --header-h:78px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:'Manrope',system-ui,sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(199,154,82,.18), transparent 35%),
+        radial-gradient(circle at 100% 10%, rgba(255,255,255,.08), transparent 25%),
+        linear-gradient(180deg,#121418 0%,#0d0f13 100%);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img,svg{display:block;max-width:100%}
+    .container{width:min(calc(100% - 32px),var(--max));margin-inline:auto}
+    .demo{
+      position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:1000;
+      background:rgba(199,154,82,.16);color:#f9e6bf;border:1px solid rgba(199,154,82,.28);
+      backdrop-filter:blur(10px);padding:8px 14px;border-radius:999px;font-size:.85rem;
+    }
+    .site-header{
+      position:sticky;top:0;z-index:999;height:var(--header-h);
+      background:rgba(15,17,21,.58);backdrop-filter:blur(14px);
+      border-bottom:1px solid var(--line);
+    }
+    .header-wrap{height:100%;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;min-width:0}
+    .brand-badge{
+      width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#f0d39e);
+      display:grid;place-items:center;color:#111;font-weight:800;box-shadow:var(--shadow);flex:0 0 auto;
+    }
+    .brand strong{display:block;font-size:1rem;line-height:1.2}
+    .brand span{display:block;color:var(--muted);font-size:.84rem}
+    nav ul{display:flex;gap:8px;align-items:center;list-style:none;margin:0;padding:0}
+    nav a{
+      display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 14px;
+      color:var(--muted);border-radius:999px;transition:.25s ease;
+    }
+    nav a:hover,nav a:focus-visible{background:var(--glass);color:var(--text);outline:none}
+    #nav-toggle,.burger{display:none}
+    .hero{padding:42px 0 26px;min-height:calc(100vh - var(--header-h));display:flex;align-items:center}
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px;align-items:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border:1px solid var(--line);
+      border-radius:999px;background:rgba(255,255,255,.04);color:#ead6ae;font-size:.92rem
+    }
+    h1{
+      margin:16px 0 14px;font-family:'Playfair Display',serif;font-size:clamp(2.6rem,8vw,5.8rem);
+      line-height:.95;letter-spacing:-.04em;
+    }
+    .lead{font-size:clamp(1.05rem,2.2vw,1.24rem);color:var(--muted);max-width:58ch}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+    .btn{
+      min-height:48px;padding:0 18px;border-radius:16px;border:1px solid transparent;display:inline-flex;
+      align-items:center;justify-content:center;font-weight:700;transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+    .btn:hover,.btn:focus-visible{transform:translateY(-2px);outline:none}
+    .btn-primary{background:linear-gradient(135deg,var(--accent),#e0bf84);color:#111;box-shadow:var(--shadow)}
+    .btn-secondary{background:rgba(255,255,255,.04);border-color:var(--line);color:var(--text)}
+    .hero-card,.card,.hours,.reviews,.contact-box{
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--radius);overflow:hidden;
+    }
+    .hero-card{padding:22px;position:relative;isolation:isolate}
+    .hero-card::before{
+      content:'';position:absolute;inset:auto -20% -25% auto;width:220px;height:220px;border-radius:50%;
+      background:radial-gradient(circle, rgba(199,154,82,.28), transparent 70%);z-index:-1;
+    }
+    .hero-visual{padding:18px;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.02))}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+    .mini{
+      padding:14px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--line);text-align:center
+    }
+    .mini strong{display:block;font-size:1.1rem;color:#f0d39e}
+    .section{padding:28px 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:18px}
+    .section h2{margin:0;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1.05}
+    .section p{margin:0;color:var(--muted)}
+    .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .service{grid-column:span 6;padding:22px}
+    .service:nth-child(1){grid-column:span 7}
+    .service:nth-child(2){grid-column:span 5}
+    .service:nth-child(3),.service:nth-child(4),.service:nth-child(5){grid-column:span 4}
+    .service-icon{
+      width:54px;height:54px;border-radius:18px;display:grid;place-items:center;margin-bottom:14px;
+      background:linear-gradient(135deg,rgba(199,154,82,.18),rgba(255,255,255,.06));border:1px solid var(--line)
+    }
+    .service h3{margin:0 0 6px;font-size:1.18rem}
+    .service p{margin:0;color:var(--muted)}
+    .card{transition:transform .24s ease,border-color .24s ease,background .24s ease}
+    .card:hover,.card:focus-within{transform:translateY(-4px);border-color:rgba(199,154,82,.35)}
+    .hours,.reviews,.contact-box{padding:22px}
+    table{width:100%;border-collapse:collapse;margin-top:12px}
+    th,td{padding:13px 10px;text-align:left;border-bottom:1px solid var(--line)}
+    th{color:#f0d39e;font-weight:700}
+    .note{margin-top:12px;color:var(--muted)}
+    .reviews p{font-size:1.05rem}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .contact-list{display:grid;gap:12px}
+    .contact-item{
+      padding:16px;border-radius:18px;background:rgba(255,255,255,.04);border:1px solid var(--line)
+    }
+    .contact-item strong{display:block;margin-bottom:4px;color:#f0d39e}
+    .map-link{margin-top:16px}
+    .site-footer{padding:40px 0 90px;color:var(--muted)}
+    .footer-box{padding-top:20px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .bottom-bar{
+      position:fixed;left:12px;right:12px;bottom:12px;z-index:998;display:none;gap:12px;
+      padding:10px;border:1px solid var(--line);border-radius:22px;background:rgba(15,17,21,.78);backdrop-filter:blur(14px);
+      box-shadow:var(--shadow)
+    }
+    .bottom-bar a{flex:1}
+    .reveal{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}
+    .delay-1{animation-delay:.08s}.delay-2{animation-delay:.16s}.delay-3{animation-delay:.24s}.delay-4{animation-delay:.32s}
+    @keyframes rise{to{opacity:1;transform:none}}
+    @media (max-width: 920px){
+      .hero-grid,.contact-grid{grid-template-columns:1fr}
+      .service,.service:nth-child(1),.service:nth-child(2),.service:nth-child(3),.service:nth-child(4),.service:nth-child(5){grid-column:span 6}
+    }
+    @media (max-width: 760px){
+      .demo{top:auto;bottom:92px}
+      .site-header{height:auto}
+      .header-wrap{padding:12px 0;align-items:center}
+      .brand strong{font-size:.96rem}
+      .burger{
+        display:grid;place-items:center;width:48px;height:48px;border-radius:14px;border:1px solid var(--line);
+        background:rgba(255,255,255,.04);cursor:pointer;flex:0 0 auto
+      }
+      .burger span,.burger::before,.burger::after{
+        content:'';display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:.25s ease
+      }
+      .burger span{margin:5px 0}
+      nav{
+        position:absolute;top:100%;left:16px;right:16px;opacity:0;pointer-events:none;transform:translateY(-8px);
+        transition:.25s ease
+      }
+      nav ul{flex-direction:column;align-items:stretch;padding:12px;background:rgba(15,17,21,.94);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow)}
+      nav a{justify-content:flex-start;padding:10px 14px}
+      #nav-toggle:checked ~ nav{opacity:1;pointer-events:auto;transform:none}
+      #nav-toggle:checked + label.burger::before{transform:translateY(7px) rotate(45deg)}
+      #nav-toggle:checked + label.burger span{opacity:0}
+      #nav-toggle:checked + label.burger::after{transform:translateY(-7px) rotate(-45deg)}
+      .hero{padding-top:24px}
+      .hero-stats{grid-template-columns:1fr 1fr 1fr}
+      .bento{grid-template-columns:1fr}
+      .service,.service:nth-child(1),.service:nth-child(2),.service:nth-child(3),.service:nth-child(4),.service:nth-child(5){grid-column:auto}
+      .bottom-bar{display:flex}
+    }
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition:none!important}
+      .reveal{opacity:1;transform:none}
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Barbershop",
+    "name":"Bb Barber 6Eme Art For Men",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"",
+      "addressLocality":"Lyon",
+      "postalCode":"",
+      "addressCountry":"FR"
+    },
+    "telephone":"",
+    "url":"",
+    "areaServed":"Lyon"
+  }
+  </script>
+</head>
+<body>
+  <div class="demo" aria-label="Information de démonstration">Maquette de démonstration</div>
+
+  <header class="site-header">
+    <div class="container header-wrap">
+      <a class="brand" href="#accueil" aria-label="Aller à l'accueil">
+        <div class="brand-badge" aria-hidden="true">BB</div>
+        <div>
+          <strong>Bb Barber 6Eme Art For Men</strong>
+          <span>Barbier à Lyon 6e</span>
+        </div>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" hidden>
+      <label for="nav-toggle" class="burger" aria-label="Ouvrir le menu">
+        <span></span>
+      </label>
+
+      <nav aria-label="Navigation principale">
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#horaires">Horaires</a></li>
+          <li><a href="#avis">Avis</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">✂️ Soin masculin • Lyon 6e</span>
+          <h1>Bb Barber 6Eme<br>Art For Men</h1>
+          <p class="lead">Nous accueillons les hommes qui recherchent une coupe nette, une barbe précise et un moment soigné au cœur de Lyon.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contact">Prendre rendez-vous</a>
+            <a class="btn btn-secondary" href="tel:">Appeler</a>
+          </div>
+        </div>
+
+        <div class="hero-card reveal delay-1" aria-hidden="true">
+          <div class="hero-visual">
+            <svg viewBox="0 0 600 520" role="img" aria-label="Illustration barbier" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#c79a52" stop-opacity="1"/>
+                  <stop offset="100%" stop-color="#f0d39e" stop-opacity="1"/>
+                </linearGradient>
+              </defs>
+              <rect x="20" y="20" width="560" height="480" rx="34" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
+              <circle cx="300" cy="200" r="78" fill="none" stroke="url(#g1)" stroke-width="18"/>
+              <path d="M230 305c16 58 54 97 70 97s54-39 70-97" fill="none" stroke="#f5f1e8" stroke-width="18" stroke-linecap="round"/>
+              <path d="M205 184c36-73 154-73 190 0" fill="none" stroke="#f5f1e8" stroke-width="16" stroke-linecap="round"/>
+              <path d="M156 410h288" stroke="rgba(255,255,255,0.14)" stroke-width="8" stroke-linecap="round"/>
+              <g transform="translate(118 100) rotate(-12 0 0)">
+                <path d="M0 0l34 34M34 0L0 34" stroke="url(#g1)" stroke-width="10" stroke-linecap="round"/>
+              </g>
+              <g transform="translate(450 320) rotate(18 0 0)">
+                <rect x="0" y="0" width="18" height="80" rx="9" fill="url(#g1)"/>
+                <rect x="22" y="0" width="18" height="80" rx="9" fill="#f5f1e8" opacity="0.9"/>
+              </g>
+            </svg>
+          </div>
+          <div class="hero-stats">
+            <div class="mini"><strong>Coupe</strong><span>Contours soignés</span></div>
+            <div class="mini"><strong>Barbe</strong><span>Lignes précises</span></div>
+            <div class="mini"><strong>Style</strong><span>Finitions nettes</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Nos services</h2>
+            <p>Des prestations pensées pour l’entretien et le style masculin.</p>
+          </div>
+        </div>
+        <div class="bento">
+          <article class="card service reveal delay-1">
+            <div class="service-icon" aria-hidden="true">✂️</div>
+            <h3>Coupe homme</h3>
+            <p>Nous réalisons une coupe adaptée à votre visage, votre texture de cheveux et votre rythme de vie.</p>
+          </article>
+          <article class="card service reveal delay-2">
+            <div class="service-icon" aria-hidden="true">🪒</div>
+            <h3>Taille de barbe</h3>
+            <p>Nous redessinons les lignes, équilibrons les volumes et apportons une finition propre et précise.</p>
+          </article>
+          <article class="card service reveal delay-1">
+            <div class="service-icon" aria-hidden="true">🧴</div>
+            <h3>Entretien barbe</h3>
+            <p>Nous prenons soin de votre barbe avec un travail minutieux pour garder une apparence nette au quotidien.</p>
+          </article>
+          <article class="card service reveal delay-2">
+            <div class="service-icon" aria-hidden="true">✨</div>
+            <h3>Contours &amp; finitions</h3>
+            <p>Nous peaufinons les détails pour une nuque, des tempes et des lignes impeccables.</p>
+          </article>
+          <article class="card service reveal delay-3">
+            <div class="service-icon" aria-hidden="true">👔</div>
+            <h3>Style complet</h3>
+            <p>Nous associons coupe et barbe pour un résultat harmonieux, élégant et maîtrisé.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="horaires">
+      <div class="container">
+        <div class="hours reveal">
+          <div class="section-head" style="margin-bottom:0;">
+            <div>
+              <h2>Horaires</h2>
+              <p>Nous vous accueillons sur rendez-vous et selon disponibilités.</p>
+            </div>
+          </div>
+          <table aria-label="Horaires d'ouverture">
+            <thead>
+              <tr><th>Jour</th><th>Ouverture</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lundi</td><td>Horaires à compléter</td></tr>
+              <tr><td>Mardi</td><td>Horaires à compléter</td></tr>
+              <tr><td>Mercredi</td><td>Horaires à compléter</td></tr>
+              <tr><td>Jeudi</td><td>Horaires à compléter</td></tr>
+              <tr><td>Vendredi</td><td>Horaires à compléter</td></tr>
+              <tr><td>Samedi</td><td>Horaires à compléter</td></tr>
+              <tr><td>Dimanche</td><td>Horaires à compléter</td></tr>
+            </tbody>
+          </table>
+          <p class="note">Horaires à compléter.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="avis">
+      <div class="container">
+        <div class="reviews reveal">
+          <div class="section-head" style="margin-bottom:8px;">
+            <div>
+              <h2>Avis clients</h2>
+              <p>Votre expérience compte à chaque visite.</p>
+            </div>
+          </div>
+          <p>Vos meilleurs avis Google s'afficheront ici</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <h2>Contact</h2>
+            <p>Nous restons à votre disposition pour votre prochain rendez-vous.</p>
+          </div>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-box reveal delay-1">
+            <div class="contact-list">
+              <div class="contact-item">
+                <strong>Adresse</strong>
+                <span>Adresse à compléter, Lyon</span>
+              </div>
+              <div class="contact-item">
+                <strong>Téléphone</strong>
+                <a href="tel:">Téléphone à compléter</a>
+              </div>
+              <div class="contact-item">
+                <strong>Plan d'accès</strong>
+                <span>Accès à préciser. Depuis le centre de Lyon, les lignes TCL du secteur Lyon 6e permettent un accès pratique à proximité.</span>
+              </div>
+            </div>
+            <div class="map-link">
+              <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Bb+Barber+6Eme+Art+For+Men+Lyon" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+            </div>
+          </div>
+
+          <div class="contact-box reveal delay-2" aria-hidden="true">
+            <svg viewBox="0 0 700 460" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration plan d'accès stylisé">
+              <rect x="12" y="12" width="676" height="436" rx="28" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)"/>
+              <path d="M60 340C180 300 180 180 300 150s150 95 250 75" fill="none" stroke="#c79a52" stroke-width="14" stroke-linecap="round"/>
+              <path d="M120 90h130M440 100h120M500 320h100M90 250h110" stroke="rgba(255,255,255,0.14)" stroke-width="10" stroke-linecap="round"/>
+              <circle cx="350" cy="210" r="26" fill="#f5f1e8"/>
+              <circle cx="350" cy="210" r="12" fill="#111111"/>
+              <path d="M350 166c27 0 48 21 48 48 0 37-48 86-48 86s-48-49-48-86c0-27 21-48 48-48z" fill="none" stroke="#f0d39e" stroke-width="10"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-box">
+      <div>
+        <strong style="color:var(--text)">Bb Barber 6Eme Art For Men</strong><br>
+        <span>Adresse à compléter, Lyon</span>
+      </div>
+      <div>© 2026 Bb Barber 6Eme Art For Men</div>
+    </div>
+  </footer>
+
+  <div class="bottom-bar" aria-label="Actions rapides mobiles">
+    <a class="btn btn-primary" href="tel:">Appeler</a>
+    <a class="btn btn-secondary" href="https://www.google.com/maps/search/?api=1&amp;query=Bb+Barber+6Eme+Art+For+Men+Lyon" target="_blank" rel="noopener">Itinéraire</a>
+  </div>
+<img src="https://numogalo.app.n8n.cloud/webhook/maquette-vue?k=bb-barber-6eme-art-for-men" alt="" width="1" height="1" style="position:absolute;left:-9999px;top:0"></body>
+</html>
